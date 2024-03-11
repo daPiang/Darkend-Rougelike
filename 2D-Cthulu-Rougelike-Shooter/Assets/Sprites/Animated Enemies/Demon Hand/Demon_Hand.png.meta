@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d44cce38817fe58448231dbc0c09b104
+guid: 59446e95b52197e479122f1cff8a34da
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flying Eye_0
+      name: Demon_Hand_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
-        height: 150
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09581d8036c7d4343b66ab8680bdd8c5
-      internalID: -426988452
+      spriteID: 3e005411cd59f40c1bbc12ef41deecd1
+      internalID: -1497897150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flying Eye_1
+      name: Demon_Hand_1
       rect:
         serializedVersion: 2
-        x: 150
+        x: 64
         y: 0
-        width: 150
-        height: 150
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d9418f54b74140df900f7a65fd55d12
-      internalID: -1610067977
+      spriteID: cece9c5fa5bce4c848b0ae3911ada23e
+      internalID: 1950679283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flying Eye_2
+      name: Demon_Hand_2
       rect:
         serializedVersion: 2
-        x: 300
+        x: 128
         y: 0
-        width: 150
-        height: 150
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1639e69c4a60b420a8db65c875ac59a8
-      internalID: -2022446364
+      spriteID: 4605a690726bd40bc8b184f6d108042c
+      internalID: 129836866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flying Eye_3
+      name: Demon_Hand_3
       rect:
         serializedVersion: 2
-        x: 450
+        x: 192
         y: 0
-        width: 150
-        height: 150
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,92 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 471b6f54ad089485385fa84a7dceb847
-      internalID: -1683223498
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flying Eye_4
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ea3cb655184f94974826ea12e075e40e
-      internalID: -1119250643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flying Eye_5
-      rect:
-        serializedVersion: 2
-        x: 750
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5015c6d93785841909c47c4fb22cbfe6
-      internalID: -1098290951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flying Eye_6
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7fa2c683b8bc740e3bb0a5e6a56da538
-      internalID: 500973645
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flying Eye_7
-      rect:
-        serializedVersion: 2
-        x: 1050
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b0549bcb92274b83a6c587c2ecd9418
-      internalID: 2138426449
+      spriteID: 8832502900d5c44eebe1e871c7499455
+      internalID: -511990910
       vertices: []
       indices: 
       edges: []
@@ -288,14 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flying Eye_0: -426988452
-      Flying Eye_1: -1610067977
-      Flying Eye_2: -2022446364
-      Flying Eye_3: -1683223498
-      Flying Eye_4: -1119250643
-      Flying Eye_5: -1098290951
-      Flying Eye_6: 500973645
-      Flying Eye_7: 2138426449
+      Demon_Hand_0: -1497897150
+      Demon_Hand_1: 1950679283
+      Demon_Hand_2: 129836866
+      Demon_Hand_3: -511990910
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
