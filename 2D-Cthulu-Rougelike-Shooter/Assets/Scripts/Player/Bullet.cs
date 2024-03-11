@@ -4,6 +4,20 @@ using Fusion;
 public class Bullet : NetworkBehaviour {
     public float lifetime = 1f;
     public float moveSpeed = 2f;
+    private bool enemyHit;
+    public float damage;
+
+    private void Update() {
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.transform.CompareTag("Enemy"))
+        {
+            enemyHit = true;
+            other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+        }
+    }
 
     public override void FixedUpdateNetwork()
     {
@@ -11,6 +25,6 @@ public class Bullet : NetworkBehaviour {
 
         lifetime -= Runner.DeltaTime;
 
-        if(lifetime < 0) Runner.Despawn(GetComponent<NetworkObject>());
+        if(lifetime < 0 || enemyHit) Runner.Despawn(GetComponent<NetworkObject>());
     }
 }
