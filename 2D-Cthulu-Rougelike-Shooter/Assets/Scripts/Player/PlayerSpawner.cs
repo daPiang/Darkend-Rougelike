@@ -15,6 +15,8 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         {
             // Debug.Log(Runner.gameObject);
             NetworkObject playerObject = Runner.Spawn(PlayerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            Runner.SetPlayerObject(player, playerObject);
+
             lobbyMgr.SetNO(playerObject);
 
             // Runner.Spawn(EnemyPrefab, new Vector3(8, 3, 0), Quaternion.identity);

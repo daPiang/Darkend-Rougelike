@@ -5,7 +5,8 @@ public class Bullet : NetworkBehaviour {
     public float lifetime = 1f;
     public float moveSpeed = 2f;
     private bool enemyHit;
-    public float damage;
+    private float damage;
+    public Vector3 direction;
 
     private void Update() {
         
@@ -21,10 +22,20 @@ public class Bullet : NetworkBehaviour {
 
     public override void FixedUpdateNetwork()
     {
-        transform.position += new Vector3(moveSpeed * Runner.DeltaTime, 0, 0);
+        transform.position += moveSpeed * Runner.DeltaTime * direction;
 
         lifetime -= Runner.DeltaTime;
 
         if(lifetime < 0 || enemyHit) Runner.Despawn(GetComponent<NetworkObject>());
+    }
+
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir.normalized;
+    }
+
+    public void SetDamage(float damage)
+    {   
+        this.damage = damage;
     }
 }

@@ -10,6 +10,7 @@ public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     public List<PlayerRef> playerMasterList;
     public List<NetworkObject> objectMasterList;
     private NetworkObject playerNO;
+    private NetworkObject localPlayerRef;
 
     private void Start() {
         
@@ -22,6 +23,8 @@ public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
         // playerMasterList.Add(playerRef);
         // objectMasterList.Add(networkObject);
         NetObjectList.Add(networkObject);
+
+        if(localPlayerRef == null) localPlayerRef = networkObject;
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -68,6 +71,11 @@ public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     public void SetNO(NetworkObject networkObject)
     {
         playerNO = networkObject;
+    }
+
+    public NetworkObject GetLocalRef()
+    {
+        return localPlayerRef;
     }
 
     public void PlayerJoined(PlayerRef player)
