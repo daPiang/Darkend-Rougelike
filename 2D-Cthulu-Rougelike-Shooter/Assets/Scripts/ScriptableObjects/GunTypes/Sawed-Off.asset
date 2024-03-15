@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSprite: {fileID: 1361481110, guid: 8a38e3774c5479946b193176185a0ee1, type: 3}
   gunName: Sawed-Off
-  range: 0.5
+  range: 0.6
   fireRate: 1.4
   damage: 5
   description: Killer monster-repellant!
+  index: 5

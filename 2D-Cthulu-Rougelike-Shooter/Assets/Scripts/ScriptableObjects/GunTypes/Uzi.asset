@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSprite: {fileID: -18418145, guid: ae8708cde5f384a4dab3bef11bf4118f, type: 3}
   gunName: Uzi
-  range: 0.5
+  range: 0.65
   fireRate: 0.33
   damage: 0.4
   description: Pray those bullets hit.
+  index: 6

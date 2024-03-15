@@ -6,7 +6,7 @@ using UnityEngine;
 public class GunBase : NetworkBehaviour
 {
     public GunSO gunStats;
-    public bool shouldLoadNewStats;
+    public bool ShouldLoadNewStats {get; set;}
     public float range = 10;
     public CircleCollider2D col;
     public GameObject target;
@@ -15,6 +15,10 @@ public class GunBase : NetworkBehaviour
     public float damage;
     public GameObject bulletPrefab;
     public List<GameObject> withinBounds;
+
+    public GunSO[] possibleGunStats;
+    [Networked, OnChangedRender(nameof(SyncVisIndex))]public int NetworkedIndex {get; set;}
+    public int gunIndex;
 
     // Start is called before the first frame update
     private void Start()
@@ -46,7 +50,7 @@ public class GunBase : NetworkBehaviour
     {
         if(HasStateAuthority)
         {
-            if(shouldLoadNewStats)
+            if(ShouldLoadNewStats)
             {
                 LoadNewStats();
             }
@@ -57,6 +61,8 @@ public class GunBase : NetworkBehaviour
         }
         else
         {
+            SyncVisual();
+
             if(transform.parent.localScale.x == 1)
             {
                 // transform.localScale = new(transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -73,7 +79,18 @@ public class GunBase : NetworkBehaviour
     public void AsssignGunStats(GunSO stats)
     {
         gunStats = stats;
-        shouldLoadNewStats = true;
+        ShouldLoadNewStats = true;
+    }
+
+    private void SyncVisual()
+    {
+        // GetComponent<SpriteRenderer>().sprite = gunStats.gunSprite;
+        GetComponent<SpriteRenderer>().sprite = possibleGunStats[gunIndex].gunSprite;
+    }
+
+    private void SyncVisIndex()
+    {
+        gunIndex = NetworkedIndex;
     }
 
     private void LoadNewStats()
@@ -88,8 +105,9 @@ public class GunBase : NetworkBehaviour
         range = gunStats.range;
         fireRate = gunStats.fireRate;
         damage = gunStats.damage;
+        NetworkedIndex = gunStats.index;
 
-        shouldLoadNewStats = false;
+        ShouldLoadNewStats = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

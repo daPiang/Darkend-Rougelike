@@ -20,6 +20,7 @@ public class PlayerMovement : NetworkBehaviour
 
     public override void Render()
     {
+        if(!FindObjectOfType<GameManager>().PreGameLobbyBool()) return;
         if(FindObjectOfType<Timer>().Frozen) return;
 
         if(HasStateAuthority)
@@ -60,6 +61,7 @@ public class PlayerMovement : NetworkBehaviour
     public override void FixedUpdateNetwork()
     {
         if(!HasStateAuthority) return;
+        if(!FindObjectOfType<GameManager>().PreGameLobbyBool()) return;
         if(FindObjectOfType<Timer>().Frozen) return;
 
         move = new(

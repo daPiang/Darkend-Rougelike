@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
-public class EnemyManager : SimulationBehaviour
+public class EnemyManager : NetworkBehaviour
 {
     public GameObject[] enemyPrefabs;
     public Vector2 spawnArea;
     public float spawnTimer;
     private float timer;
-    public bool gameStarted;
+    [Networked, OnChangedRender(nameof(SyncState))] public bool GameStarted {get; set;}
+    public bool startSpawn;
     public LobbyManager lobbyMgr;
     public Timer gameTime;
 
@@ -18,14 +19,30 @@ public class EnemyManager : SimulationBehaviour
     // }
 
     private void Update() {
+        // if(gameTime == null) gameTime = FindObjectOfType<Timer>();
+
         // Debug.Log(Runner.gameObject);
+        if(!HasStateAuthority) return;
+        if(!FindObjectOfType<GameManager>().PreGameLobbyBool()) return;
+
         timer -= Time.deltaTime;
-        if(timer < 0 && gameStarted)
+        if(timer < 0 && startSpawn)
         {
             // Debug.Log(Runner.gameObject);
             SpawnEnemy();
             timer = spawnTimer;
         }
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_StartSpawning(bool state)
+    {
+        GameStarted = state;
+    }
+
+    private void SyncState()
+    {
+        startSpawn = GameStarted;
     }
 
     private void SpawnEnemy()
@@ -47,31 +64,31 @@ public class EnemyManager : SimulationBehaviour
 
     private int SpawnWeights(float minutes)
     {
-        if(minutes >= 0 && minutes <= 2)
+        if(minutes >= 0 && minutes < 2)
         {
-            spawnTimer = 4;
+            spawnTimer = 2.65f;
             return 0;
         }
 
-        if(minutes >= 2 && minutes <= 4)
+        if(minutes >= 2 && minutes < 4)
         {
             spawnTimer = 2.5f;
             return Random.Range(0,2);
         }
 
-        if(minutes >= 4 && minutes <= 6)
+        if(minutes >= 4 && minutes < 6)
         {
             spawnTimer = 2;
             return Random.Range(0,3);
         }
 
-        if(minutes >= 6 && minutes <= 8)
+        if(minutes >= 6 && minutes < 8)
         {
             spawnTimer = 1.8f;
             return Random.Range(0,4);
         }
 
-        if(minutes >= 8 && minutes <= 10)
+        if(minutes >= 8 && minutes < 10)
         {
             spawnTimer = 1.5f;
             return Random.Range(0,5);
@@ -80,7 +97,7 @@ public class EnemyManager : SimulationBehaviour
         if(minutes >= 10)
         {
             spawnTimer = 1;
-            return Random.Range(2,5);
+            return Random.Range(3,5);
         }
 
         return 0;

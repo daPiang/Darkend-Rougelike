@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Enemy
   - GUI
+  - HostButton
+  - JoinButton
+  - HostMenuBackButton
+  - GameUi
+  - MainMenu
+  - PowerUpScreen
+  - StartGameButton
   layers:
   - Default
   - TransparentFX

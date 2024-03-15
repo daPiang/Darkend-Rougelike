@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 {
@@ -10,11 +11,22 @@ public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     public List<PlayerRef> playerMasterList;
     public List<NetworkObject> objectMasterList;
     private NetworkObject playerNO;
-    private NetworkObject localPlayerRef;
+    private NetworkObject localObject;
+    private PlayerRef localRef;
 
-    private void Start() {
-        
+
+    public GameObject mainMenu, gameUi;
+    public Button StartGameButton;
+
+    private void Awake() {
+        StartGameButton?.onClick.AddListener(() => Rpc_StartGame());
     }
+
+    // private void Update() {
+    //     if(mainMenu == null) mainMenu = GameObject.FindWithTag("MainMenu");
+    //     if(gameUi == null) gameUi = GameObject.FindWithTag("GUI");
+    //     if(StartGameButton == null) StartGameButton = GameObject.FindWithTag("StartGameButton").GetComponent<Button>();
+    // }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_AddToDict(PlayerRef playerRef, NetworkObject networkObject)
@@ -24,7 +36,8 @@ public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
         // objectMasterList.Add(networkObject);
         NetObjectList.Add(networkObject);
 
-        if(localPlayerRef == null) localPlayerRef = networkObject;
+        if(localObject == null) localObject = networkObject;
+        if(localRef == null) localRef = playerRef;
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -34,6 +47,9 @@ public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
         // playerMasterList.Remove(playerRef);
         // objectMasterList.Remove(networkObject);
         NetObjectList.Remove(networkObject);
+
+        // if(localObject != null) localObject = networkObject;
+        // if(localRef != null) localRef = playerRef;
     }
 
     // [Rpc(RpcSources.All, RpcTargets.All)]
@@ -75,7 +91,12 @@ public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 
     public NetworkObject GetLocalRef()
     {
-        return localPlayerRef;
+        return localObject;
+    }
+
+    public PlayerRef GetLocalPlayerRef()
+    {
+        return localRef;
     }
 
     public void PlayerJoined(PlayerRef player)
@@ -86,5 +107,12 @@ public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     public void PlayerLeft(PlayerRef player)
     {
         // throw new System.NotImplementedException();
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void Rpc_StartGame()
+    {
+        gameUi.SetActive(true);
+        mainMenu.SetActive(false);
     }
 }

@@ -8,14 +8,15 @@ public class PowerUpSelect : NetworkBehaviour
     public PowerUpOption[] options;
     public GameObject powerUpScreen;
 
-    public void OpenPowerUpSelect()
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RpcOpenPowerUpSelect()
     {
-        if(!HasStateAuthority) return;
-
         FindObjectOfType<GameManager>().DisableOnGameStartBool();
         //Freeze Monsters
         //Freeze Time
         FindObjectOfType<Timer>().Rpc_FreezeTimer(true);
+        FindObjectOfType<EnemyManager>().Rpc_StartSpawning(false);
+        // EnemyManager.Rpc_StartSpawning(Runner, false);
         //Freeze Player
 
         powerUpScreen.SetActive(true);
@@ -24,10 +25,11 @@ public class PowerUpSelect : NetworkBehaviour
     
     public void ClosePowerUpSelect()
     {
-        if(!HasStateAuthority) return;
-        Debug.Log("CLOSING");
+        // Debug.Log("CLOSING");
 
         FindObjectOfType<Timer>().Rpc_FreezeTimer(false);
+        FindObjectOfType<EnemyManager>().Rpc_StartSpawning(true);
+        // EnemyManager.Rpc_StartSpawning(true);
 
         powerUpScreen.SetActive(false);
         // SelectGunsToDisplay();
@@ -35,7 +37,6 @@ public class PowerUpSelect : NetworkBehaviour
 
     private void SelectGunsToDisplay()
     {
-        if(!HasStateAuthority) return;
         Shuffle(lootPool);
         
         // Select the first three elements
@@ -50,14 +51,12 @@ public class PowerUpSelect : NetworkBehaviour
 
     private void LoadGunStats(GunSO gunStats, int x)
     {
-        if(!HasStateAuthority) return;
         options[x].PassGunStats(gunStats);
     }
 
     // Shuffle array using Fisher-Yates algorithm
     private void Shuffle<T>(T[] array)
     {
-        if(!HasStateAuthority) return;
         for (int i = array.Length - 1; i > 0; i--)
         {
             int j = Random.Range(0, i + 1);

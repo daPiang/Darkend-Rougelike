@@ -16,12 +16,14 @@ public class Bullet : NetworkBehaviour {
         if(other.transform.CompareTag("Enemy"))
         {
             enemyHit = true;
-            other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            other.gameObject.GetComponent<Enemy>().RpcTakeDamage(damage);
         }
     }
 
     public override void FixedUpdateNetwork()
     {
+        if(FindObjectOfType<Timer>().Frozen) return;
+
         transform.position += moveSpeed * Runner.DeltaTime * direction;
 
         lifetime -= Runner.DeltaTime;

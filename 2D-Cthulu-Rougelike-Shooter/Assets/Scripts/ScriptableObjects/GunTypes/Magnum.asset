@@ -16,5 +16,6 @@ MonoBehaviour:
   gunName: Magnum
   range: 1
   fireRate: 2
-  damage: 1.5
+  damage: 3
   description: It's high noon. DRAW!
+  index: 1

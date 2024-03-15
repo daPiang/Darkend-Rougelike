@@ -9,4 +9,5 @@ public class GunSO : ScriptableObject
     public float fireRate;
     public float damage;
     public string description;
+    public int index;
 }

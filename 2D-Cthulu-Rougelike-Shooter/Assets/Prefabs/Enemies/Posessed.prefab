@@ -200,9 +200,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   damage: 1
-  xp: 1
+  xp: 12
   rb: {fileID: 4892346704541668009}
-  hp: 5
+  _Hp: 15
+  localHp: 15
 --- !u!114 &7005765385638010781
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,22 +19,21 @@ public class PowerUpOption : NetworkBehaviour
 
     public void PassGunStats(GunSO gunStats)
     {
-        if(!HasStateAuthority) return;
         this.gunStats = gunStats;
         SetOptionValues();
     }
 
     private void SetOptionValues()
     {
-        if(!HasStateAuthority) return;
         displayImage.sprite = gunStats.gunSprite;
         displayName.text = gunStats.gunName;
         description.text = gunStats.description;
     }
 
+    // [Rpc(RpcSources.All, RpcTargets.All)]
     public void ChoosePower()
     {
-        if(!HasStateAuthority) return;
+        // if(!HasStateAuthority) return;
         // Debug.Log("POWER");
         //Load selected SO into player loadout
         FindObjectOfType<LobbyManager>().GetLocalRef().GetComponent<PlayerLoadout>().guns[
@@ -46,4 +45,9 @@ public class PowerUpOption : NetworkBehaviour
         
         powerScreen.ClosePowerUpSelect();
     }
+
+    // public void ChoosePower()
+    // {
+    //     Rpc_ChoosePower();
+    // }
 }

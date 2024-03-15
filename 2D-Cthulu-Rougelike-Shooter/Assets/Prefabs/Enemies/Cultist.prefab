@@ -202,7 +202,8 @@ MonoBehaviour:
   damage: 1
   xp: 1
   rb: {fileID: 4892346704541668009}
-  hp: 5
+  _Hp: 5
+  localHp: 5
 --- !u!114 &-8853540799350683745
 MonoBehaviour:
   m_ObjectHideFlags: 0

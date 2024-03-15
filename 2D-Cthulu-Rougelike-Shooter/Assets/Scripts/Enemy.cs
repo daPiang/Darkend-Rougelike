@@ -11,16 +11,17 @@ public class Enemy : NetworkBehaviour
     public Rigidbody2D rb;
 
     private GameObject target;
-    public float hp = 1;
+    [Networked, OnChangedRender(nameof(SyncHp))] public float Hp {get; set;} = 1;
+    public float localHp = 1;
     private bool dead;
     private bool tookDamage;
 
     private void Update() {
         if(HasStateAuthority)
         {
-            if(hp <= 0)
+            if(localHp <= 0)
             {
-                GameObject.FindGameObjectWithTag("GUI").GetComponent<XPBar>().AddXp(xp);
+                GameObject.FindGameObjectWithTag("GUI").GetComponent<XPBar>().RpcAddXp(xp);
                 dead = true;
             }
         }
@@ -63,9 +64,23 @@ public class Enemy : NetworkBehaviour
         this.target = target;
     }
 
-    public void TakeDamage(float damage)
+    private void SyncHp()
     {
-        hp -= damage;
+        localHp = Hp;
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RpcTakeDamage(float damage)
+    {
+        Hp -= damage;
         tookDamage = true;
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        if(other.transform.CompareTag("Player"))
+        {
+            Debug.Log("DAMAGING PLAYER");
+            other.gameObject.GetComponent<PlayerHealth>().Rpc_TakeDamage(damage);
+        }
     }
 }

@@ -24,4 +24,9 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
             // Runner.Spawn(EnemyPrefab, new Vector3(8, -3, 0), Quaternion.identity);
         }
     }
+    
+    // private void Update() {
+    //     if(lobbyMgr == null) lobbyMgr = FindObjectOfType<LobbyManager>();
+    // }
+
 }

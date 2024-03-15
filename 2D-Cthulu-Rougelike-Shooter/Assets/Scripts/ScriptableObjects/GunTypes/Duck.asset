@@ -16,5 +16,6 @@ MonoBehaviour:
   gunName: The Duck
   range: 1.5
   fireRate: 3
-  damage: 10
+  damage: 5
   description: Good will hunting folks,
+  index: 7

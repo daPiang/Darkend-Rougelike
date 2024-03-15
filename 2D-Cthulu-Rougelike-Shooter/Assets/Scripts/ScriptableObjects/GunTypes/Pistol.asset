@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSprite: {fileID: 454052547, guid: ae8708cde5f384a4dab3bef11bf4118f, type: 3}
   gunName: Pistol
-  range: 0.65
+  range: 0.66
   fireRate: 1.1
   damage: 1
   description: Your basic civilian pistol. Better than nothing.
+  index: 0

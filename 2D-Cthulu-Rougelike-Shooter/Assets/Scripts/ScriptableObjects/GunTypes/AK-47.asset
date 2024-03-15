@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSprite: {fileID: -2069327725, guid: ae8708cde5f384a4dab3bef11bf4118f, type: 3}
   gunName: AK-47
-  range: 0.95
+  range: 0.8
   fireRate: 0.6
   damage: 2.5
   description: One-tap machine. Cyka blyat favorite.
+  index: 4
