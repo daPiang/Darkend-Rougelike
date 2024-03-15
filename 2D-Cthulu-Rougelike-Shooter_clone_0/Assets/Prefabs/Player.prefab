@@ -535,8 +535,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 139445009818883480}
-  _NetworkedHp: 10
-  localHp: 10
+  _NetworkedHp: 100
+  localHp: 100
   maxHp: 100
   damageTimer: 0.5
 --- !u!114 &6265722599836660671

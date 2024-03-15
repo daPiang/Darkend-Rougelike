@@ -111,4 +111,9 @@ public class LobbyManager : NetworkBehaviour, IPlayerJoined, IPlayerLeft
         gameUi.SetActive(false);
         mainMenu.SetActive(true);
     }
+
+    public void ExitLobby()
+    {
+        Runner.Shutdown();
+    }
 }

@@ -18,7 +18,7 @@ public class GameRadio : MonoBehaviour
             PlaySound("menu_bgm");
         }
 
-        if(inGameUi.activeSelf)
+        if(!menuUi.activeSelf)
         {
             am.Stop("menu_bgm");
             PlaySound("game_bgm");

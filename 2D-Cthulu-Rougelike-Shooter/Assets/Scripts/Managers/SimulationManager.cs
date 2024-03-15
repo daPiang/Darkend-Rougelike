@@ -21,10 +21,14 @@ public class SimulationManager : SimulationBehaviour
         JoinButton?.onClick.AddListener(() => ConnectToRunner(GameMode.Shared)); 
     }
 
-    private void Update() {
+    private async void Update() {
         if(Input.GetKeyUp(KeyCode.Escape))
         {
-            if(Runner.IsRunning) Runner.Shutdown();
+            if(Runner.IsRunning)
+            {
+                lobby.Rpc_ResetGame();
+                await Runner.Shutdown();
+            }
         }
     }
 

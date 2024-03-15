@@ -280,12 +280,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671adaba13553d74c9a91fe1717b484d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 3.2
   damage: 1
   xp: 2
   rb: {fileID: 4892346704541668009}
-  _Hp: 3
-  localHp: 3
+  _Hp: 2.5
+  localHp: 2.5
 --- !u!114 &9043790430031242182
 MonoBehaviour:
   m_ObjectHideFlags: 0
