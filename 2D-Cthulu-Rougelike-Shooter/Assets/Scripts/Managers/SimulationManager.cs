@@ -26,7 +26,7 @@ public class SimulationManager : SimulationBehaviour
         {
             if(Runner.IsRunning)
             {
-                lobby.Rpc_ResetGame();
+                FindObjectOfType<GameManager>().Rpc_EndGame();
                 await Runner.Shutdown();
             }
         }
